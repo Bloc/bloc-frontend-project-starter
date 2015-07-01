@@ -1,27 +1,12 @@
 module.exports = function(grunt) {
 
-    grunt.registerTask( 'default', [ 'clean', 'browserify', 'autoprefixer', 'copy', 'hapi', 'watch'] );
+    grunt.registerTask( 'default', [ 'clean', 'copy', 'hapi', 'watch'] );
 
-    grunt.registerTask( 'build', [ 'clean', 'browserify', 'autoprefixer', 'copy' ] );
+    grunt.registerTask( 'build', [ 'clean', 'copy' ] );
 
     grunt.registerTask( 'run', [ 'hapi', 'watch' ]);
 
     grunt.initConfig({
-        browserify: {
-            dist: {
-                files: {
-                    './dist/js/app.js': ['./app/scripts/app.js']
-                }
-            }
-        },
-
-        autoprefixer: {
-            dist: {
-                files: {
-                    './dist/css/style.css': './dist/css/style.css'
-                }
-            }
-        },
 
         watch: {
             hapi: {
@@ -35,8 +20,6 @@ module.exports = function(grunt) {
                 ],
                 tasks: [
                     'clean',
-                    'browserify',
-                    'autoprefixer',
                     'copy'
                 ],
                 options: {
@@ -80,10 +63,9 @@ module.exports = function(grunt) {
         clean: ['./dist']
     });
 
-    grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-hapi');
-    grunt.loadNpmTasks('grunt-autoprefixer');
+
 };
