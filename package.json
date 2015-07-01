@@ -1,12 +1,12 @@
 {
-  "name": "base-frontend-project",
-  "version": "0.0.1",
-  "description": "Bloc skeleton project for a single page application",
+  "name": "bloc-frontend-project-starter",
+  "version": "0.0.2",
+  "description": "Starter project for the Bloc Frontend Web Development",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Bloc and Nick Ferraro",
+  "author": "Bloc Inc",
   "license": "ISC",
   "dependencies": {
     "hapi": "^7.5.0",
