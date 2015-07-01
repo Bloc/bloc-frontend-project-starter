@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
 
-    grunt.registerTask( 'default', [ 'clean', 'browserify', 'sass', 'autoprefixer', 'copy', 'hapi', 'watch'] );
+    grunt.registerTask( 'default', [ 'clean', 'browserify', 'autoprefixer', 'copy', 'hapi', 'watch'] );
 
-    grunt.registerTask( 'build', [ 'clean', 'browserify', 'sass', 'autoprefixer', 'copy' ] );
+    grunt.registerTask( 'build', [ 'clean', 'browserify', 'autoprefixer', 'copy' ] );
 
     grunt.registerTask( 'run', [ 'hapi', 'watch' ]);
 
@@ -11,17 +11,6 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     './dist/js/app.js': ['./app/scripts/app.js']
-                }
-            }
-        },
-
-        sass: {
-            dist: {
-                options: {
-                    style: 'expanded'
-                },
-                files: {
-                    './dist/css/style.css': './app/sass/style.scss'
                 }
             }
         },
@@ -39,7 +28,7 @@ module.exports = function(grunt) {
                 files: [
                     './app/images/*.{png,jpg,jpeg}',
                     './app/scripts/**/*.js',
-                    './app/sass/**/*.scss',
+                    './app/css/**/*.css',
                     './app/pages/**/*.html',
                     './app/templates/**/*.html',
                     'Gruntfile.js'
@@ -47,7 +36,6 @@ module.exports = function(grunt) {
                 tasks: [
                     'clean',
                     'browserify',
-                    'sass',
                     'autoprefixer',
                     'copy'
                 ],
@@ -97,6 +85,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-hapi');
-    grunt.loadNpmTasks('grunt-sass');
     grunt.loadNpmTasks('grunt-autoprefixer');
 };
