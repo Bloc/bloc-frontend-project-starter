@@ -1,91 +1,74 @@
 ## Bloc Frontend Project Starter
 
-A base for Bloc frontend projects.
+A starter application for student projects in Bloc's [Frontend Web Development Course](https://www.bloc.io/frontend-development-bootcamp).
 
 ## Configuration
 
-Configuring this project should be consistent across Nitrous, Mac (local), and Vagrant.
-
-Start by cloning the repository
+Start by cloning the repository:
 
 ```
-$ git clone https://github.com/Bloc/base-frontend-project.git <your-frontend-project-name>
+$ git clone https://github.com/Bloc/bloc-frontend-project-starter.git <your-frontend-project-name>
 ```
 
-The project uses Grunt to run tasks (detailed below); start by installing the Grunt Command Line Interface (`grunt-cli`) globally on your machine.
+The project uses Grunt to run tasks in development. Thoroughly review our [resource on using Grunt](https://www.bloc.io/resources/using-grunt) before using this application. It may also help to review [our resource on NPM and `package.json` files](https://www.bloc.io/resources/npm-and-package-json).
 
-```
-$ npm install -g grunt-cli
-```
-
-Once that's complete, install the remaining project dependencies by running
+Install the project dependencies by running:
 
 ```
 $ npm install
 ```
 
-## Grunt
+## Run the Application
 
-This project base uses [Grunt](http://gruntjs.com/) to serve, build and watch project files in development. We've configured Grunt to work for you, but if you're interested in learning more about how Grunt works, look at Grunt's [Getting Started Guide](http://gruntjs.com/getting-started) or watch [Egghead's introduction to Grunt video](https://egghead.io/lessons/gruntjs-introduction-to-grunt).
-
-## Running the application
-
-Run the application using
+Run the application using the Gruntfile's `default` task
 
 ```
 $ grunt
 ```
 
-The application runs on port 3000 (configured in the [`Gruntfile.js`](https://github.com/joelip/base-frontend-project/blob/master/server.js)). To change the port, modify the number highlighted below
+The default task runs a simple server on port 3000. To view it in a any browser, go to [http://localhost:3000](http://localhost:3000).
 
-```js
-connect: {
-  server: {
-    options: {
-      // Change this value here to the desired port number
-      port: 3000,
-      hostname: 'localhost',
-      base: './dist',
-      useAvailablePort: true
-    }
-  }
-}
+>Note that unless the application is run [via Live Preview in Brackets](#use-in-brackets-live-preview), the browser will need to be refreshed to view the most recent changes.
+
+### Using without Angular
+
+By default, the application is configured to be used in a Single-Page Application (SPA) with AngularJS. If you're working on a project that doesn't use AngularJS, see the instructions below [for using configuring the server to run in a non-SPA](#configure-server-for-non-spas).
+
+## Use in Brackets Live Preview
+
+To use the application with the Live Preview functionality of the Brackets text editor, go to __File > Project Settings__ and add `http://localhost:3000` to the Base URL field.
+
+![Screenshot of project settings URL in Brackets](https://bloc-global-assets.s3.amazonaws.com/images-frontend/screenshots/bloc-frontend-project-starter/live_preview_project_settings.png)
+
+The text in the application will not update on every keystroke, but changes will automatically push when you save the file.
+
+## Directory Structure
+
+```
+├── Gruntfile.js
+├── LICENSE
+├── Procfile
+├── README.md
+├── app
+│   ├── css
+│   │   └── style.css
+│   ├── images
+│   │   └── bloc-logo-white.png
+│   ├── pages
+│   │   └── index.html
+│   ├── scripts
+│   │   └── app.js
+│   └── templates
+│       └── home.html
+├── package.json
+└── server.js
 ```
 
-## Directory structure and Grunt
-
-```
-app/
- |__images/
- |   |__bloc-image-white.png
- |__pages/
- |   |__index.html
- |__sass/
- |   |__styles.scss
- |__scripts/
- |   |__app.js
- |__templates/
- |   |__home.html
-```
-
-Grunt looks for files using a defined pattern so that it knows what to compile and copy and where to put it. To edit the files that Grunt watches, look at the array of files in the `watch` task in `Gruntfile.js`. The default watched files are
-
-```js
-  files: [
-      './app/images/*.{png,jpg,jpeg}',
-      './app/scripts/**/*.js',
-      './app/sass/**/*.scss',
-      './app/pages/**/*.html',
-      './app/templates/**/*.html',
-      'Gruntfile.js'
-  ]
-```
-
-Add any files or directories to Grunt's watch task using the [Grunt conventions for performing file operations](http://gruntjs.com/configuring-tasks#files).
+All code, styles, markup, and assets should be saved to the `app` directory. Saving changes creates a new directory, `dist`, that holds final copies of the application content. `dist` is the directory the server uses to serve the content displayed by the browser. __Do not edit files in `dist`__ because it will reset changes to your work every time you save. Restrict all edits to files in the `app` directory.
 
 ### Images
 
-Add images to the `app/images` directory. To reference images in HTML, use the path `images/<image file name>.jpg`. For example, to include the image called `bloc-white-logo.png`, the path for the `src` attribute in the HTML would be:
+Add images to the `app/images` directory. To reference images in HTML, use the path `/images/<image file name>.jpg`. For example, to include the image called `bloc-white-logo.png`, the path for the `src` attribute in the HTML would be:
 
 ```html 
 <img src="/images/bloc-white-logo.png">
@@ -97,51 +80,80 @@ __Note:__ A sample image has been added to `app/images`. To remove the image fro
 $ rm -f app/images/bloc-white-logo.png
 ```
 
-### Sass
-
-All Sass files must be included in the `sass` directory. When you create new Sass files in addition to `styles.scss`, make sure that you include them in `styles.scss` with an `@import` statement. For example, if you create a `home.scss` file to match our `home.html` template, include it in `styles.scss` with
-
-```sass
-@import "home";
-```
-
-and it will be automatically populated in the compiled CSS file when you save any Sass file.
-
 ### Difference between Pages and Templates
 
-The `pages` directory is where you should keep application layouts. That is, these are full pages where you'll put a base HTML structure that might hold a `ui-view` or another dynamic block of HTML based on differing routes, app states, etc.
+The `templates` directory should hold any HTML files used as templates in Angular states configured by UI-Router. All other HTML files should go in the `pages` directory.
 
-Templates are partials, or smaller sets of HTML that will be populated into the pages. The distinction is similar to the differene between `index.html` and the HTML files in the `templates` directory in Bloc Jams.
+### Procfile
 
+The `Procfile` is a file for [providing instructions to Heroku servers](https://devcenter.heroku.com/articles/procfile) that run after pushing new code to the repository. __Do not change the contents of the Procfile__ or Heroku will throw an error when you attempt to visit your application.
+
+>For more information about how to use Heroku with Bloc's frontend applications, see our [resource on using Heroku](https://www.bloc.io/resources/using-heroku-frontend).
+
+## Configure Server for Non-SPAs
+
+By default, `bloc-frontend-project-starter` is configured to be used with SPAs. If you're not building a project with Angular, then modify `server.js` with the following:
+
+```diff
+var Hapi = require('hapi'),
+    path = require('path'),
+    port = process.env.PORT || 3000,
+    server = new Hapi.Server(port),
+    routes = {
+        css: {
+            method: 'GET',
+            path: '/css/{path*}',
+            handler: createDirectoryRoute('css')
+        },
+        js: {
+            method: 'GET',
+            path: '/js/{path*}',
+            handler: createDirectoryRoute('js')
+        },
+        images: {
+            method: 'GET',
+            path: '/images/{path*}',
+            handler: createDirectoryRoute('images')
+        },
+        templates: {
+            method: 'GET',
+            path: '/templates/{path*}',
+            handler: createDirectoryRoute('templates')
+        },
+-        spa: {
++        staticPages: {
+             method: 'GET',
+             path: '/{path*}',
+-            handler: {
+-                file: path.join(__dirname, '/dist/index.html')
+-            }
++            handler: createDirectoryRoute('/')
+         }
+     };
+ 
+-server.route([ routes.css, routes.js, routes.images, routes.templates, routes.spa ]);
++server.route([ routes.css, routes.js, routes.images, routes.templates, routes.staticPages ]);
+...
+```
+
+Optionally, delete the `templates` directory and all references to it in `Gruntfile.js` to remove unnecessary files. However, keeping them in the repository won't affect your application.
 
 ## Grunt plugins
 
-A list of the plugins used by Grunt and what they're used for.
-
-#### Browserify
-
-[Browserify](http://browserify.org/) enables the use of Node's [`require()`](https://nodejs.org/api/all.html#all_require) syntax in browser files.
-
-#### Sass
-
-[Grunt Sass](https://github.com/gruntjs/grunt-contrib-sass) for compiling Sass into CSS.
-
-#### Autoprefixer
-
-[Autoprefixer](https://github.com/nDmitry/grunt-autoprefixer) allows you to write CSS free of worrying about vendor prefixes. No need to add `-webkit`, `-moz`, `-ms`, etc to the beginning of your CSS3, because the Grunt Autoprefixer task takes care of it for you.
+A list of the Grunt plugins in this application.
 
 #### Watch
 
-[Grunt watch](https://github.com/gruntjs/grunt-contrib-watch) watches for changes to file content and then executes Grunt tasks when a change is detected. Watch is useful for tasks like continuous unit testing (every time you save a file, that new file is tested), refreshing your browser automatically when changes are reflected, or compiling preprocessing languages like Sass or Jade into CSS or HTML.
+[Grunt watch](https://github.com/gruntjs/grunt-contrib-watch) watches for changes to file content and then executes Grunt tasks when a change is detected.
 
 #### Copy
 
-[Grunt copy](https://github.com/gruntjs/grunt-contrib-copy) allows you to copy files from development folders like images, fonts or other static assets and put them in the folder that will be served on the frontend of your application.
+[Grunt copy](https://github.com/gruntjs/grunt-contrib-copy) copies files from our development folders and puts them in the folder that will be served with the frontend of your application.
 
 #### Clean
 
-[Grunt clean](https://github.com/gruntjs/grunt-contrib-clean) "cleans" or removes all files in your destination folder (the folder where you'll put your officially served content for your application) so that logic in your stylesheets, templates or scripts isn't accidentally overridden by previous code in the directory.
+[Grunt clean](https://github.com/gruntjs/grunt-contrib-clean) "cleans" or removes all files in your distribution folder (`dist`) so that logic in your stylesheets, templates, or scripts isn't accidentally overridden by previous code in the directory.
 
 #### Hapi
 
-[Grunt Hapi](https://github.com/athieriot/grunt-hapi) is a task that runs a server using [`HapiJS`](http://hapijs.com/). Happy is a Node Web Application framework with robust configuration options. Using Hapi allows us to use Angular for our application routing instead of relying on a backend to handle template requests.
+[Grunt Hapi](https://github.com/athieriot/grunt-hapi) runs a server using [`HapiJS`](http://hapijs.com/). Happy is a Node web application framework with robust configuration options.
