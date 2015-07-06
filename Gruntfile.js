@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         watch: {
             hapi: {
                 files: [
-                    './app/images/*.{png,jpg,jpeg}',
+                    './app/assets/**/*.{png,jpg,jpeg,mp3}',
                     './app/scripts/**/*.js',
                     './app/css/**/*.css',
                     './app/pages/**/*.html',
