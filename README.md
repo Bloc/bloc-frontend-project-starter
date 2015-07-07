@@ -20,7 +20,7 @@ $ npm install
 
 ## Run the Application
 
-Run the application using the Gruntfile's `default` task
+Run the application using the Gruntfile's `default` task:
 
 ```
 $ grunt
@@ -32,7 +32,7 @@ The default task runs a simple server on port 3000. To view it in a any browser,
 
 ### Using without Angular
 
-By default, the application is configured to be used in a Single-Page Application (SPA) with AngularJS. If you're working on a project that doesn't use AngularJS, see the instructions below [for using configuring the server to run in a non-SPA](#configure-server-for-non-spas).
+By default, the application is configured to be used in a Single-Page Application (SPA) with AngularJS. If you're working on a project that doesn't use AngularJS, see the instructions below [for configuring the server to run in a non-SPA](#configure-server-for-non-spas).
 
 ## Use in Brackets Live Preview
 
@@ -50,14 +50,15 @@ The text in the application will not update on every keystroke, but changes will
 ├── Procfile
 ├── README.md
 ├── app
-│   ├── css
-│   │   └── style.css
-│   ├── images
-│   │   └── bloc-logo-white.png
+│   ├── assets
+│   │   └── images
+│   │       └── bloc-logo-white.png
 │   ├── pages
 │   │   └── index.html
 │   ├── scripts
 │   │   └── app.js
+│   ├── styles
+│   │   └── style.css
 │   └── templates
 │       └── home.html
 ├── package.json
@@ -66,23 +67,27 @@ The text in the application will not update on every keystroke, but changes will
 
 All code, styles, markup, and assets should be saved to the `app` directory. Saving changes creates a new directory, `dist`, that holds final copies of the application content. `dist` is the directory the server uses to serve the content displayed by the browser. __Do not edit files in `dist`__ because it will reset changes to your work every time you save. Restrict all edits to files in the `app` directory.
 
-### Images
+### Assets/Images
 
-Add images to the `app/images` directory. To reference images in HTML, use the path `/images/<image file name>.jpg`. For example, to include the image called `bloc-white-logo.png`, the path for the `src` attribute in the HTML would be:
+Add images to the `app/assets/images` directory. To reference images in HTML, use the path `/assets/images/<image file name>.jpg`. For example, to include the image called `bloc-white-logo.png`, the path for the `src` attribute in the HTML would be:
 
 ```html 
-<img src="/images/bloc-white-logo.png">
+<img src="/assets/images/bloc-white-logo.png">
 ```
 
 __Note:__ A sample image has been added to `app/images`. To remove the image from the application, run the following command from the root of repo:
 
 ```bash
-$ rm -f app/images/bloc-white-logo.png
+$ rm -f app/assets/images/bloc-white-logo.png
 ```
+
+To reference any other assets, like the music in Bloc Jams, use the path `assets/<asset-type>/<asset-file>`. The Gruntfile is pre-configured to handle assets in a subfolder with the `.mp3` extension.
+
+>See lines 14 and 35 of `Gruntfile.js` for the accepted file extensions of assets.
 
 ### Difference between Pages and Templates
 
-The `templates` directory should hold any HTML files used as templates in Angular states configured by UI-Router. All other HTML files should go in the `pages` directory.
+The `templates` directory should hold any HTML files used as templates in Angular states configured by UI Router. All other HTML files belong in the `pages` directory.
 
 ### Procfile
 
@@ -102,18 +107,18 @@ var Hapi = require('hapi'),
     routes = {
         css: {
             method: 'GET',
-            path: '/css/{path*}',
-            handler: createDirectoryRoute('css')
+            path: '/styles/{path*}',
+            handler: createDirectoryRoute('styles')
         },
         js: {
             method: 'GET',
-            path: '/js/{path*}',
-            handler: createDirectoryRoute('js')
+            path: '/scripts/{path*}',
+            handler: createDirectoryRoute('scripts')
         },
-        images: {
+        assets: {
             method: 'GET',
-            path: '/images/{path*}',
-            handler: createDirectoryRoute('images')
+            path: '/assets/{path*}',
+            handler: createDirectoryRoute('assets')
         },
         templates: {
             method: 'GET',
@@ -136,7 +141,7 @@ var Hapi = require('hapi'),
 ...
 ```
 
-Optionally, delete the `templates` directory and all references to it in `Gruntfile.js` to remove unnecessary files. However, keeping them in the repository won't affect your application.
+Optionally, delete the `templates` directory and all references to it in `Gruntfile.js` to remove unnecessary files (templates are only useful for SPAs). However, keeping them in the repository won't affect your application.
 
 ## Grunt plugins
 
