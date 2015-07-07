@@ -81,6 +81,10 @@ __Note:__ A sample image has been added to `app/images`. To remove the image fro
 $ rm -f app/assets/images/bloc-white-logo.png
 ```
 
+To reference any other assets, like the music in Bloc Jams, use the path `assets/<asset-type>/<asset-file>`. The Gruntfile is pre-configured to handle assets in a subfolder with the `.mp3` extension.
+
+>See lines 14 and 35 of `Gruntfile.js` for the accepted file extensions of assets.
+
 ### Difference between Pages and Templates
 
 The `templates` directory should hold any HTML files used as templates in Angular states configured by UI Router. All other HTML files belong in the `pages` directory.
@@ -103,18 +107,18 @@ var Hapi = require('hapi'),
     routes = {
         css: {
             method: 'GET',
-            path: '/css/{path*}',
-            handler: createDirectoryRoute('css')
+            path: '/styles/{path*}',
+            handler: createDirectoryRoute('styles')
         },
         js: {
             method: 'GET',
-            path: '/js/{path*}',
-            handler: createDirectoryRoute('js')
+            path: '/scripts/{path*}',
+            handler: createDirectoryRoute('scripts')
         },
-        images: {
+        assets: {
             method: 'GET',
-            path: '/images/{path*}',
-            handler: createDirectoryRoute('images')
+            path: '/assets/{path*}',
+            handler: createDirectoryRoute('assets')
         },
         templates: {
             method: 'GET',
@@ -137,7 +141,7 @@ var Hapi = require('hapi'),
 ...
 ```
 
-Optionally, delete the `templates` directory and all references to it in `Gruntfile.js` to remove unnecessary files. However, keeping them in the repository won't affect your application.
+Optionally, delete the `templates` directory and all references to it in `Gruntfile.js` to remove unnecessary files (templates are only useful for SPAs). However, keeping them in the repository won't affect your application.
 
 ## Grunt plugins
 
