@@ -1,0 +1,30 @@
+
+
+.album-covers {
+    position: relative;
+}
+
+.collection-album-container {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.collection-album-container .caption p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255, 0.6);
+}
+
+.collection-album-container .caption p a {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.collection-album-container .caption p a.album-name {
+    color: white;
+}
+
+.collection-album-container img {
+    width: 80%;
+}
