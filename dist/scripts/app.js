@@ -1,5 +1,20 @@
-confirm('Are you ready to Rock!?')
+(function() {
+	function config($stateProvider, $locationProvider) {
+		$locationProvider
+			.html5Mode({
+				enabled: true,
+				requireBase: false
+		});
+		
+		$stateProvider
+			.state('landing', {
+				url: '/',
+				templateUrl: '/templates/landing.html'
+		});
+	}
+	
+	angular
+		.module('blocJams', ['ui.router'])
+		.config(config);
+})();
 
-confirm('I said, are you ready to Rock?!?!?!?')
-
-angular.module('blocJams', []);
