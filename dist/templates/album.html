@@ -1,23 +1,24 @@
 <main class="album-view container narrow">
      <section class="clearfix">
          <div class="column half">
-             <img src="/assets/images/album_covers/01.png" class="album-cover-art">
+             <img src="{{ album.albumData.albumArtUrl }}" class="album-cover-art">
          </div>
          <div class="album-view-details column half">
-             <h2 class="album-view-title">The Colors</h2>
-             <h3 class="album-view-artist">Pablo Picasso</h3>
-             <h5 class="album-view-release-info">1909 Spanish Records</h5>
+             <h2 class="album-view-title">{{ album.albumData.name }}</h2>
+             <h3 class="album-view-artist">{{ album.albumData.artist }}</h3>
+             <h5 class="album-view-release-info">{{ album.albumData.year }} {{ album.albumData.label }}</h5>
          </div>
      </section>
      <table class="album-view-song-list">
-         <tr class="album-view-song-item" ng-mouseover="hovered = true" ng-mouseleave="hovered = false">
+         <tr class="album-view-song-item" ng-mouseover="hovered = true" ng-mouseleave="hovered = false"
+						 															ng-repeat="song in album.albumData.songs">
              <td class="song-item-number">
-							 <span ng-show="!playing && !hovered">1</span>
+							 <span ng-show="!playing && !hovered">{{ $index +1 }}</span>
 							 <a class="album-song-button" ng-show="!playing && hovered"><span class="ion-play"></span></a>
 							 <a class="album-song-button" ng-show="playing"><span class="ion-pause"></span></a>
 					 	 </td>
-             <td class="song-item-title">Blue</td>
-             <td class="song-item-duration">3:31</td>
+             <td class="song-item-title">{{ song.name }}</td>
+             <td class="song-item-duration">{{ song.length }}</td>
          </tr>
      </table>
 </main>
