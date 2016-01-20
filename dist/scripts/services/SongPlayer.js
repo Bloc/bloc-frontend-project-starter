@@ -55,13 +55,15 @@
 			} else if (currentSong === song) {
 						if (currentBuzzObject.isPaused()) {
 								currentBuzzObject.play();
+								song.playing = true;
 						}
 				}
 		};
 		
 		SongPlayer.pause = function(song) {
 			currentBuzzObject.pause();
-			song.playing = false;
+			song.playing = false
+			setSong(song);
 		};
 		
 		return SongPlayer;
