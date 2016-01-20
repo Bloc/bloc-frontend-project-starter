@@ -18,6 +18,17 @@
 		
 		var currentBuzzObject = null;
 		
+		/**
+	* @function stopSong
+	* @desc Stops the current song and sets playing = null
+	* @param {Object} song
+	*/
+		
+		var stopSong = function(song) {
+			currentBuzzObject.stop();
+			SongPlayer.currentSong.playing = null;
+		}
+		
 	/**
  	* @function setSong
  	* @desc Stops currently playing song and loads new audio file as currentBuzzObject
@@ -26,8 +37,7 @@
 		
 		var setSong = function(song) {
 				if (currentBuzzObject) {
-						currentBuzzObject.stop();
-						SongPlayer.currentSong.playing = null;
+						stopSong(song);
 				} 
 			
 			currentBuzzObject = new buzz.sound(song.audioURL, {
@@ -40,7 +50,7 @@
 		
 	/**
 	* @function playSong
-	* @desc Plays the currently selected song
+	* @desc Plays the currently selected song and sets playing = true
 	* @param {Object} song
 	*/
 		
@@ -48,6 +58,7 @@
 			currentBuzzObject.play();
 			song.playing = true;
 		};
+		
 		
 	/**
 	* @function getSongIndex
@@ -76,7 +87,7 @@
 								currentBuzzObject.play();
 								song.playing = true;
 						}
-				}
+				} 
 		};
 		
 		SongPlayer.pause = function(song) {
@@ -95,7 +106,7 @@
 		
 	/**
 	* @function SongPlayer.previous
-	* @desc Decreaces the current song index by one, and plays the previous song. Unless the index is already zero, then the 				 player will remain on the first song
+	* @desc Decreaces the current song index by one, and plays the previous song. Unless the index is already zero, then the 				 player will stop playing. 
 	*/
 		
 		SongPlayer.previous = function() {
@@ -103,8 +114,25 @@
 			currentSongIndex--;
 			
 			if (currentSongIndex < 0) {
-				currentBuzzObject.stop();
-				SongPlayer.currentSong.playing = null;
+				stopSong(song);
+			} else {
+				var song = currentAlbum.songs[currentSongIndex];
+				setSong(song);
+				playSong(song);
+			}
+		};
+		
+	/**
+	* @function SongPlayer.previous
+	* @desc Increaces the current song index by one, and plays the next song. Unless the index is more that the array 							length, then the player will play the first song. 
+	*/
+		
+		SongPlayer.next = function() {
+			var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+			currentSongIndex++;
+			
+			if (currentSongIndex > currentAlbum.songs.length) {
+				stopSong(song);
 			} else {
 				var song = currentAlbum.songs[currentSongIndex];
 				setSong(song);
