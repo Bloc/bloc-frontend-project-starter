@@ -87,15 +87,11 @@
 								currentBuzzObject.play();
 								song.playing = true;
 						}
-<<<<<<< HEAD
-				} 
-=======
-				} else {
+				}  else {
 					song = currentAlbum.songs[0];
 					setSong(song);
 					playSong(song);
 				}
->>>>>>> services3-assignment
 		};
 		
 		SongPlayer.pause = function(song) {
