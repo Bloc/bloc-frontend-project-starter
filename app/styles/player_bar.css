@@ -135,7 +135,7 @@
 }
 
 .player-bar .volume {
-	width: 25%;
+	width: 20%;
 	text-align: right; 
 }
 
@@ -150,6 +150,12 @@
      width: 5.75rem;
      vertical-align: middle;
  }
+
+.player-bar .mute {
+		width: 5%;
+		text-align: center;
+}
+
 
 @media (max-width: 40rem) {
      .player-bar {

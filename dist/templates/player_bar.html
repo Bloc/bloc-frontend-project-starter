@@ -18,7 +18,7 @@
                  <span class="ion-skip-forward"></span>
              </a>
          </div>
-         <div class="control-group currently-playing" ng-show="playerBar.songPlayer.currentSong.playing">
+         <div class="control-group currently-playing">
              <h2 class="song-name">{{ playerBar.songPlayer.currentSong.name }}</h2>
              <h2 class="artist-song-mobile"></h2>
              <h3 class="artist-name">{{ album.albumData.artist }} </h3>
@@ -32,5 +32,15 @@
              <span class="icon ion-volume-high"></span>
              <seek-bar value="{{ playerBar.songPlayer.volume }}" max="{{ playerBar.songPlayer.maxVolume }}" on-change="playerBar.songPlayer.setVolume(value)"></seek-bar>
          </div>
+			 	 <a class="control-group mute">
+			 			<span class="icon ion-volume-mute"
+									ng-show="playerBar.songPlayer.currentSong.playing && !playerBar.songPlayer.currentSong.isMuted()"
+									ng-click="playerBar.songPlayer.mute()">
+					  </span>
+					 	<span class="icon ion-volume-low"
+									ng-show="playerBar.songPlayer.currentSong.isMuted()"
+									ng-click="playerBar.songPlayer.mute()">
+					 </span>
+			 	 </a>
      </div>
  </section>
