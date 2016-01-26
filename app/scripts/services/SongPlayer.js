@@ -176,8 +176,10 @@
 
 			if (currentBuzzObject.isMuted()) {
 				SongPlayer.volume = 0;
-			} else if (!currentBuzzObject.isMuted()) {
+				SongPlayer.currentSong.muted = true;
+			} else {
 				SongPlayer.volume = currentBuzzObject.volume;
+				SongPlayer.currentSong.muted = false;
 			}
 		};
 		
