@@ -176,10 +176,8 @@
 
 			if (currentBuzzObject.isMuted()) {
 				SongPlayer.volume = 0;
-				
 			} else if (!currentBuzzObject.isMuted()) {
 				SongPlayer.volume = currentBuzzObject.volume;
-				
 			}
 		};
 		
