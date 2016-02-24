@@ -13,7 +13,7 @@
   "author": "Bloc Inc",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^7.5.0",
+    "hapi": "~7.5.0",
     "path": "^0.4.9"
   },
   "devDependencies": {
