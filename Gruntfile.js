@@ -18,10 +18,6 @@ module.exports = function(grunt) {
                     './app/templates/**/*.html',
                     'Gruntfile.js'
                 ],
-                tasks: [
-                    'clean',
-                    'copy'
-                ],
                 options: {
                     spawn: false
                 }
@@ -64,7 +60,7 @@ module.exports = function(grunt) {
                 options: {
                     server: require('path').resolve('./server'),
                     bases: {
-                        '/dist': require('path').resolve('./dist/')
+                        '/app': require('path').resolve('./app/pages')
                     }
                 }
             }
