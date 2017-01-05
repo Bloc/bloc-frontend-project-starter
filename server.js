@@ -27,22 +27,30 @@ var Hapi = require('hapi'),
             method: 'GET',
             path: '/{path*}',
             handler: {
-                file: path.join(__dirname, '/dist/index.html')
+                file: path.join(__dirname, '/app/pages/index.html')
             }
         }
     };
 
 server.route([ routes.css, routes.js, routes.assets, routes.templates, routes.spa ]);
+
 server.start( onServerStarted );
+
+server.on('response', function (request) {
+    if(request.url.path.includes('templates')) {
+        console.log();
+        console.log(new Date().toString() + ':  ' + request.method.toUpperCase() + ' - ' + request.url.path + ' - (' + request.response.statusCode + ')'); 
+    }
+});
 
 function onServerStarted() {
     console.log( 'Server running on port ', port );
 }
 
-function createDirectoryRoute( directory ) {
+function createDirectoryRoute(directory) {
     return {
         directory: {
-            path: path.join(__dirname, '/dist/', directory)
+            path: path.join(__dirname, '/app/', directory)
         }
     };
 }
