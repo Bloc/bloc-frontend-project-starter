@@ -27,7 +27,7 @@ var Hapi = require('hapi'),
             method: 'GET',
             path: '/{path*}',
             handler: {
-                file: path.join(__dirname, '/app/pages/index.html')
+                file: path.join(__dirname, '/app/index.html')
             }
         }
     };
@@ -39,7 +39,7 @@ server.start( onServerStarted );
 server.on('response', function (request) {
     if(request.url.path.includes('templates')) {
         console.log();
-        console.log(new Date().toString() + ':  ' + request.method.toUpperCase() + ' - ' + request.url.path + ' - (' + request.response.statusCode + ')'); 
+        console.log(new Date().toString() + ':  ' + request.method.toUpperCase() + ' - ' + request.url.path + ' - (' + request.response.statusCode + ')');
     }
 });
 
