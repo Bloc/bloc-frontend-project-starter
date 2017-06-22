@@ -1,0 +1,12 @@
+{
+  "name": "bloc-frontend-project-starter",
+  "scripts": {},
+  "env": {},
+  "formation": {},
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
