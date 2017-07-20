@@ -1,13 +1,13 @@
 const Hapi = require('hapi');
 const Inert = require('inert');
-const Path  = require('path');
+const Path = require('path');
 
-var connection = {
+let connection = {
     port: process.env.PORT || 3000,
     host: process.env.IP || 'localhost'
 };
 
-var routes = [
+let routes = [
     {
         method: 'GET',
         path: '/scripts/{path*}',
@@ -53,7 +53,7 @@ var routes = [
     }
 ]
 
-var server = new Hapi.Server();
+let server = new Hapi.Server();
 server.connection(connection);
 
 server.register([Inert], (err) => {
