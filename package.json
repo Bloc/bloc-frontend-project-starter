@@ -13,8 +13,9 @@
   "author": "Bloc Inc",
   "license": "ISC",
   "dependencies": {
-    "hapi": "~7.5.0",
-    "path": "^0.4.9"
+    "hapi": "~16.4.0",
+    "path": "^0.4.9",
+    "inert": "^4.2.0"
   },
   "devDependencies": {
     "connect-modrewrite": "^0.7.9",
