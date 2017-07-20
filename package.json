@@ -1,23 +1,27 @@
 {
-  "name": "bloc-frontend-project-starter",
-  "version": "0.0.3",
-  "description": "Starter project for the Bloc Frontend Web Development",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bloc/bloc-frontend-project-starter"
+  "name" : "bloc-frontend-project-starter",
+  "version" : "0.0.4",
+  "description" : "Starter project for the Bloc Frontend Web Development",
+  "repository" : {
+    "type" : "git",
+    "url" : "https://github.com/bloc/bloc-frontend-project-starter"
   },
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js"
+  "main" : "server.js",
+  "scripts" : {
+    "start" : "node server.js"
   },
-  "author": "Bloc Inc",
-  "license": "ISC",
+  "author" : "Bloc Inc",
+  "license" : "ISC",
   "dependencies": {
-    "hapi": "~7.5.0",
-    "path": "^0.4.9"
+    "hapi" : "~16.4.0",
+    "path" : "^0.4.9",
+    "inert" : "^4.2.0"
   },
-  "devDependencies": {
-    "connect-modrewrite": "^0.7.9",
-    "es5-shim": "^4.0.1"
+  "engines" : {
+    "node" : ">=6.11.1"
+  },
+  "devDependencies" : {
+    "connect-modrewrite" : "^0.7.9",
+    "es5-shim" : "^4.0.1"
   }
 }
