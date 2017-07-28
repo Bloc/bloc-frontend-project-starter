@@ -8,5 +8,11 @@
     {
       "url": "heroku/nodejs"
     }
-  ]
+  ],
+  "env": {
+    "IP": {
+      "description": "The host name the connection was configured to.",
+      "value": "0.0.0.0"
+    }
+  }
 }
